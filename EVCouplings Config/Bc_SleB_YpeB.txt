@@ -1,0 +1,107 @@
+align_1:
+  alignment_protocol: standard
+  compute_num_effective_seqs: true
+  database: uniref100
+  domain_threshold: 0.3
+  extract_annotation: true
+  first_index: 1
+  iterations: 5
+  minimum_column_coverage: 70
+  minimum_sequence_coverage: 50
+  protocol: complex
+  region:
+  - 1
+  - 259
+  reuse_alignment: true
+  sequence_id: sp|P0A3V1|SLEB_BACCE
+  sequence_threshold: 0.3
+  use_bitscores: true
+align_2:
+  alignment_protocol: standard
+  compute_num_effective_seqs: true
+  database: uniref100
+  domain_threshold: 0.3
+  extract_annotation: true
+  first_index: 1
+  iterations: 5
+  minimum_column_coverage: 70
+  minimum_sequence_coverage: 50
+  protocol: complex
+  region:
+  - 1
+  - 446
+  reuse_alignment: true
+  sequence_id: tr|A0A6M8D8P3|A0A6M8D8P3_BACCE
+  sequence_threshold: 0.3
+  use_bitscores: true
+compare:
+  boundaries: ecs
+  distance_cutoff: 5
+  first_alignment_min_overlap: 20
+  first_by_alignment: true
+  first_compare_multimer: true
+  first_distance_cutoff: 5
+  first_domain_threshold: 0.3
+  first_max_num_hits: 25
+  first_max_num_structures: 10
+  first_pdb_alignment_method: jackhmmer
+  first_sequence_threshold: 0.3
+  first_use_bitscores: true
+  min_sequence_distance: 6
+  plot_highest_count: 10
+  plot_increase: 5
+  plot_lowest_count: 5
+  plot_probability_cutoffs:
+  - 0.9
+  - 0.99
+  protocol: complex
+  scale_sizes: true
+  second_alignment_min_overlap: 20
+  second_by_alignment: true
+  second_compare_multimer: true
+  second_distance_cutoff: 5
+  second_domain_threshold: 0.3
+  second_max_num_hits: 25
+  second_max_num_structures: 10
+  second_pdb_alignment_method: jackhmmer
+  second_sequence_threshold: 0.3
+  second_use_bitscores: true
+concatenate:
+  genome_distance_threshold: 10000
+  minimum_column_coverage: 0.5
+  minimum_sequence_coverage: 0.7
+  paralog_identity_threshold: 0.95
+  protocol: best_hit
+  use_best_reciprocal: true
+couplings:
+  focus_mode: true
+  ignore_gaps: true
+  iterations: 100
+  lambda_J: 0.01
+  lambda_J_times_Lq: true
+  lambda_h: 0.01
+  min_sequence_distance: 6
+  protocol: standard
+  reuse_ecs: true
+  scoring_model: skewnormal
+fold:
+  dock_highest_count: 10
+  dock_increase: 5
+  dock_lowest_count: 5
+  dock_probability_cutoffs:
+  - 0.9
+  - 0.99
+  protocol: complex_dock
+global:
+  cpu: 2
+  prefix: evcouplings_job
+  theta: 0.8
+mutate:
+  protocol: complex
+pipeline: protein_complex
+stages:
+- align_1
+- align_2
+- concatenate
+- couplings
+- compare
